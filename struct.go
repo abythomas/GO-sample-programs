@@ -1,14 +1,32 @@
 package main
 
 import "fmt"
+import "encoding/json"
 
-type polygon struct{
-	name string  
-	sides int
+type address struct{
+	House_no int
+	Street string
+	Place string
+}
+
+type person struct{
+	Name string  
+	Age int
+	address
 }
 
 func main(){
-	sq := polygon{"Square",4}
-	fmt.Println(sq.name, sq.sides)
+	pr := &person{
+		Name : "Jason Bourne",
+		Age : 42,
+		address: address{
+		House_no : 151,
+		Street : "Holly Lane",
+		Place : "Virginia",
+		},
+    }
+    fmt.Println(pr)
+    res, _ := json.Marshal(pr)
+    fmt.Println(string(res))
 
 }
